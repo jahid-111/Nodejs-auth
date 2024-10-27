@@ -1,12 +1,12 @@
-###### RESTapi
+# RESTapi
 
 ---
 
-##### Authenticate
+## JWT Authenticate
 
 ### Description
 
-## This API allows authenticated users to generate short links and supports multiple user accounts. MongoDB Atlas is used for data storage.
+##### how to create a secure and robust authentication system for your Node.js application using JSON WEB TOKENS.
 
 > How To Run :
 
@@ -20,6 +20,8 @@ npm i shortid
 npm i ejs
 npm i uuid
 npm i cookie-parser
+npm i jsonwebtoken
 npm i nodemon js
 npm i start
+nodemon
 ```
