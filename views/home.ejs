@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Render From SSR</h1>
+
+    <div>
+      <form method="POST" action="/url">
+        <label for="url">Enter Url</label>
+        <input
+          type="text"
+          name="redirectUrl"
+          placeholder="https://example.com"
+          required
+        />
+        <button type="submit">Generate</button>
+      </form>
+    </div>
+    <br />
+
+    <div>
+      <% if(locals.id) {%>
+      <p>
+        Generated URL => Go :
+        <a target="_blank" href="http://localhost:8001/url/<%= id %>"
+          >http://localhost:8001/url/<%= id %></a
+        >
+      </p>
+      <%} %>
+    </div>
+
+    <div>
+      <!-- all Passes Data are store in locals -->
+      <% if(locals.urls){ %>
+
+      <table>
+        <thead>
+          <tr>
+            <th>SL No</th>
+            <th>Short Id</th>
+            <th>Redirect</th>
+            <th>Clicks</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% urls.forEach((url, index)=>{ %>
+
+          <tr>
+            <td><%=index+1 %></td>
+            <td><%=url.shortId %></td>
+            <td>=><%=url.redirectUrl %></td>
+            <td><%=url.visitHistory.length %></td>
+          </tr>
+          <%}) %>
+        </tbody>
+      </table>
+
+      <%}%>
+    </div>
+  </body>
+</html>
