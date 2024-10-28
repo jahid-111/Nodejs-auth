@@ -1,12 +1,12 @@
-###### RESTapi
+# RESTapi
 
 ---
 
-##### Authenticate
+## Authorization
 
 ### Description
 
-## This API allows authenticated users to generate short links and supports multiple user accounts. MongoDB Atlas is used for data storage.
+##### This API provides access to login functionalities. Admin users have the authority to visit all routes.
 
 > How To Run :
 
@@ -20,6 +20,11 @@ npm i shortid
 npm i ejs
 npm i uuid
 npm i cookie-parser
+npm i jsonwebtoken
 npm i nodemon js
 npm i start
+nodemon
+
+ =>   npm install express dotenv mongoose shortid ejs uuid cookie-parser jsonwebtoken
+
 ```

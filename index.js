@@ -15,7 +15,8 @@ const path = require("path");
 const staticRouter = require("./routes/staticRouters");
 
 const userRoute = require("./routes/user");
-const { restrictToUserLoginOnly, checkAuth } = require("./middlewares/auth");
+
+const { checkForAuthentication, restrictTo } = require("./middlewares/auth");
 
 // ====================^^^^^^^^^^^^^^^^^^
 
@@ -33,10 +34,11 @@ app.set("views", path.resolve("./views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); //  Form Data
 app.use(cookieParser());
+app.use(checkForAuthentication);
 
 // ==================== Routes
-app.use("/", checkAuth, staticRouter);
-app.use("/url", restrictToUserLoginOnly, urlRoute);
+app.use("/", staticRouter);
+app.use("/url", restrictTo(["PUBLIC", "ADMIN"]), urlRoute);
 app.use("/user", userRoute);
 
 app.get("/home", async (req, res) => {
@@ -58,5 +60,7 @@ app.get("/url/:shortId", async (req, res) => {
 
 app.listen(
   port,
-  console.log(` ➡️ http://localhost:8001/ ✔️ Server Running on ${port}`)
+  console.log(
+    ` click me: ➡️  http://localhost:8001/ ✔️ Server Running on ${port}`
+  )
 );
